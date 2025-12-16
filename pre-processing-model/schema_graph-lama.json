@@ -1,0 +1,94 @@
+{
+  "graph": {
+    "employee_data.first_name": [
+      "recruitment_data.first_name"
+    ],
+    "recruitment_data.first_name": [
+      "employee_data.first_name"
+    ],
+    "employee_data.last_name": [
+      "recruitment_data.last_name"
+    ],
+    "recruitment_data.last_name": [
+      "employee_data.last_name"
+    ],
+    "employee_data.state": [
+      "recruitment_data.state"
+    ],
+    "recruitment_data.state": [
+      "employee_data.state"
+    ],
+    "employee_data.created_at": [
+      "employee_engagement.created_at",
+      "recruitment_data.created_at",
+      "training_and_development.created_at"
+    ],
+    "employee_engagement.created_at": [
+      "employee_data.created_at",
+      "recruitment_data.created_at",
+      "training_and_development.created_at"
+    ],
+    "recruitment_data.created_at": [
+      "employee_data.created_at",
+      "employee_engagement.created_at",
+      "training_and_development.created_at"
+    ],
+    "training_and_development.created_at": [
+      "employee_data.created_at",
+      "employee_engagement.created_at",
+      "recruitment_data.created_at"
+    ],
+    "employee_data.updated_at": [
+      "employee_engagement.updated_at",
+      "recruitment_data.updated_at",
+      "training_and_development.updated_at"
+    ],
+    "employee_engagement.updated_at": [
+      "employee_data.updated_at",
+      "recruitment_data.updated_at",
+      "training_and_development.updated_at"
+    ],
+    "recruitment_data.updated_at": [
+      "employee_data.updated_at",
+      "employee_engagement.updated_at",
+      "training_and_development.updated_at"
+    ],
+    "training_and_development.updated_at": [
+      "employee_data.updated_at",
+      "employee_engagement.updated_at",
+      "recruitment_data.updated_at"
+    ],
+    "employee_data.deleted_at": [
+      "employee_engagement.deleted_at",
+      "recruitment_data.deleted_at",
+      "training_and_development.deleted_at"
+    ],
+    "employee_engagement.deleted_at": [
+      "employee_data.deleted_at",
+      "recruitment_data.deleted_at",
+      "training_and_development.deleted_at"
+    ],
+    "recruitment_data.deleted_at": [
+      "employee_data.deleted_at",
+      "employee_engagement.deleted_at",
+      "training_and_development.deleted_at"
+    ],
+    "training_and_development.deleted_at": [
+      "employee_data.deleted_at",
+      "employee_engagement.deleted_at",
+      "recruitment_data.deleted_at"
+    ],
+    "employee_engagement.id": [
+      "training_and_development.id"
+    ],
+    "training_and_development.id": [
+      "employee_engagement.id"
+    ],
+    "employee_engagement.employee_id": [
+      "training_and_development.employee_id"
+    ],
+    "training_and_development.employee_id": [
+      "employee_engagement.employee_id"
+    ]
+  }
+}

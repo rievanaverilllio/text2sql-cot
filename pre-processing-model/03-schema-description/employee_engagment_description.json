@@ -1,0 +1,15 @@
+{
+  "table_name": "employee_engagement",
+  "description": "Semantic: Represents the 'Employee Sentiment' entity, capturing longitudinal data on employee engagement, satisfaction, and work-life balance. Each record corresponds to a specific survey response linked to an employee.",
+  "primary_key": ["id"],
+  "columns": [
+    {"name": "employee_id", "description": "FK to employee_data.emp_id.", "example": 1001},
+    {"name": "survey_date", "description": "Survey date (YYYY-MM-DD).", "example": "2022-10-10"},
+    {"name": "engagement_score", "description": "Engagement (1–5).", "example": 2},
+    {"name": "satisfaction_score", "description": "Satisfaction (1–5).", "example": 5},
+    {"name": "work_life_balance_score", "description": "Work–life balance (1–5).", "example": 5}
+  ],
+  "foreign_keys": [
+    {"column": "employee_id", "references": "employee_data.emp_id", "on_delete": "cascade"}
+  ]
+}

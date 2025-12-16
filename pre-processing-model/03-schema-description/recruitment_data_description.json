@@ -1,0 +1,25 @@
+{
+  "table_name": "recruitment_data",
+  "description": "Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome.",
+  "columns": [
+    {"name": "applicant_id", "description": "Applicant ID (PK).", "example": 1001},
+    {"name": "application_date", "description": "Application date (YYYY-MM-DD).", "example": "2023-06-03"},
+    {"name": "first_name", "description": "First name.", "example": "Scott"},
+    {"name": "last_name", "description": "Last name.", "example": "Sheppard"},
+    {"name": "gender", "description": "Gender.", "example": "Male"},
+    {"name": "date_of_birth", "description": "Date of birth (YYYY-MM-DD).", "example": "1992-08-31"},
+    {"name": "phone_number", "description": "Phone number.", "example": "421-429-7655x39421"},
+    {"name": "email", "description": "Email.", "example": "perezjanet@example.org"},
+    {"name": "address", "description": "Street address.", "example": "597 Smith Point"},
+    {"name": "city", "description": "City.", "example": "Hollandfort"},
+    {"name": "state", "description": "State/province.", "example": "NV"},
+    {"name": "zip_code", "description": "Postal/ZIP code.", "example": "57588"},
+    {"name": "country", "description": "Country.", "example": "Micronesia"},
+    {"name": "education_level", "description": "Highest education.", "example": "High School"},
+    {"name": "years_of_experience", "description": "Years of experience.", "example": 8},
+    {"name": "desired_salary", "type": "decimal", "description": "Desired salary (decimal).", "example": 60103.21},
+    {"name": "job_title", "description": "Applied job title.", "example": "Chief Technology Officer"},
+    {"name": "status", "description": "Pipeline status (Applied/Screening/Interviewing/...).", "example": "Interviewing"}
+  ],
+  "primary_key": ["applicant_id"]
+}

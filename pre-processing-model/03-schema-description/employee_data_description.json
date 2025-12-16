@@ -1,0 +1,33 @@
+{
+  "table_name": "employee_data",
+  "description": "Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the organization.",
+  "primary_key": "emp_id",
+  "columns": [
+    {"name": "emp_id", "description": "Unique employee ID (PK).", "example": 3427},
+    {"name": "first_name", "description": "First name.", "example": "Uriah"},
+    {"name": "last_name", "description": "Last name.", "example": "Bridges"},
+    {"name": "start_date", "description": "Start date (DD-Mon-YY).", "example": "20-Sep-19"},
+    {"name": "exit_date", "description": "End date; NULL = still employed.", "example": null},
+    {"name": "title", "description": "Job title.", "example": "Production Technician I"},
+    {"name": "supervisor", "description": "Direct manager name.", "example": "Peter Oneill"},
+    {"name": "ad_email", "description": "Work email.", "example": "uriah.bridges@bilearner.com"},
+    {"name": "business_unit", "description": "Business unit code.", "example": "CCDR"},
+    {"name": "employee_status", "description": "Employment status (e.g., Active, Voluntarily Terminated).", "example": "Active"},
+    {"name": "employee_type", "description": "Employment type (Contract/Full-Time/etc.).", "example": "Contract"},
+    {"name": "pay_zone", "description": "Pay zone / salary band.", "example": "Zone C"},
+    {"name": "employee_classification_type", "description": "Classification (Temporary/Part-Time/etc.).", "example": "Temporary"},
+    {"name": "termination_type", "description": "Termination type (Voluntary/Involuntary/Unk).", "example": "Unk"},
+    {"name": "termination_description", "description": "Termination reason (text).", "example": "Me see picture nature degree benefit."},
+    {"name": "department_type", "description": "Department / function.", "example": "Production"},
+    {"name": "division", "description": "Division.", "example": "Finance & Accounting"},
+    {"name": "dob", "description": "Date of birth (DD-MM-YYYY).", "example": "07-10-1969"},
+    {"name": "state", "description": "Work state/province.", "example": "MA"},
+    {"name": "job_function_description", "description": "Job function (e.g., Accounting).", "example": "Accounting"},
+    {"name": "gender_code", "description": "Gender.", "example": "Female"},
+    {"name": "location_code", "description": "Work location code.", "example": 34904},
+    {"name": "race_desc", "description": "Race / ethnicity.", "example": "White"},
+    {"name": "marital_desc", "description": "Marital status.", "example": "Widowed"},
+    {"name": "performance_score", "description": "Performance rating label.", "example": "Fully Meets"},
+    {"name": "current_employee_rating", "description": "Numeric performance score (1–5).", "example": 4}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "table_name": "training_and_development",
+  "description": "Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development.",
+  "primary_key": ["id"],
+  "columns": [
+    {"name": "employee_id", "description": "FK to employee_data.emp_id.", "example": 1001},
+    {"name": "training_date", "description": "Training date (YYYY-MM-DD).", "example": "2022-09-21"},
+    {"name": "training_program_name", "description": "Program name.", "example": "Customer Service"},
+    {"name": "training_type", "description": "Type (Internal/External/Online/Onsite).", "example": "Internal"},
+    {"name": "training_outcome", "description": "Outcome (Passed/Failed/Completed).", "example": "Failed"},
+    {"name": "location", "description": "Training location.", "example": "Port Greg"},
+    {"name": "trainer", "description": "Trainer name.", "example": "Amanda Daniels"},
+    {"name": "training_duration_days", "description": "Duration (days).", "example": 4},
+    {"name": "training_cost", "description": "Cost.", "example": 510.83}
+  ]
+}

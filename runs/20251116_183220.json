@@ -1,0 +1,330 @@
+{
+  "run_id": "20251116_183220",
+  "preprocessing": {
+    "relevant_columns": [
+      {
+        "table": "training_and_development",
+        "column": "training_duration_days",
+        "description": "Durasi pelatihan dalam jumlah hari.",
+        "score": 0.20337545845994887
+      },
+      {
+        "table": "recruitment_data",
+        "column": "years_of_experience",
+        "description": "Jumlah total tahun pengalaman kerja relevan yang dimiliki pelamar.",
+        "score": 0.19742809878398704
+      },
+      {
+        "table": "employee_data",
+        "column": "location_code",
+        "description": "Kode lokasi tempat karyawan bekerja.",
+        "score": 0.10975266560275669
+      },
+      {
+        "table": "recruitment_data",
+        "column": "zip_code",
+        "description": "Kode pos tempat tinggal pelamar.",
+        "score": 0.08614472264808999
+      },
+      {
+        "table": "recruitment_data",
+        "column": "phone_number",
+        "description": "Nomor telepon pelamar yang dapat dihubungi untuk komunikasi terkait proses rekrutmen.",
+        "score": 0.07413143180368482
+      },
+      {
+        "table": "employee_data",
+        "column": "start_date",
+        "description": "Tanggal mulai bekerja.",
+        "score": 0.057704383332637194
+      },
+      {
+        "table": "recruitment_data",
+        "column": "gender",
+        "description": "Jenis kelamin pelamar, biasanya berisi 'Male', 'Female', atau nilai lain sesuai data yang diberikan.",
+        "score": 0.05675906060089171
+      },
+      {
+        "table": "employee_data",
+        "column": "exit_date",
+        "description": "Tanggal karyawan berhenti bekerja (jika ada).",
+        "score": 0.053996068577911935
+      }
+    ],
+    "relevant_tables": [
+      "employee_data",
+      "recruitment_data",
+      "training_and_development"
+    ],
+    "related_tables": []
+  },
+  "context": {
+    "query": "berapa jumlah pegawai kontrak",
+    "instruction": {
+      "instruction_template": {
+        "task": "Text-to-SQL Generation",
+        "goal": "Mengubah pertanyaan natural language menjadi SQL yang valid menggunakan reasoning bertahap (Chain-of-Thought).",
+        "persona": "Anda adalah seorang ahli database dan SQL dengan pengalaman merancang skema, melakukan schema-linking, menulis query kompleks (JOIN, GROUP BY, agregasi), dan memvalidasi hasil. Jawablah sebagai pakar yang berhati-hati: prioritaskan akurasi, gunakan hanya entitas schema yang tersedia, dan sertakan reasoning singkat sebelum memberikan SQL final.",
+        "steps": [
+          "1. Pahami maksud pertanyaan pengguna.",
+          "2. Identifikasi tabel dan kolom yang relevan berdasarkan schema database.",
+          "3. Lakukan schema linking antar entity dan kolom.",
+          "4. Tentukan operasi yang dibutuhkan (SELECT, JOIN, WHERE, GROUP BY, ORDER BY).",
+          "5. Susun reasoning langkah demi langkah (CoT).",
+          "6. Hasilkan SQL final yang benar secara sintaks dan semantik.",
+          "7. Validasi ulang query untuk menghindari kesalahan kolom/tabel."
+        ],
+        "constraints": {
+          "ensure_valid_sql": true,
+          "use_only_schema_entities": true,
+          "avoid_hallucination": true,
+          "output_format": {
+            "cot": "<reasoning>",
+            "sql": "<sql_query>"
+          }
+        }
+      },
+      "example": {
+        "input": "Berapa jumlah pelanggan yang terdaftar pada tahun 2023?",
+        "schema_available": [
+          "customers(id, name, created_at)"
+        ],
+        "output": {
+          "cot": "Pertanyaan meminta jumlah pelanggan. Kolom yang relevan adalah 'id'. Tabelnya adalah 'customers'. Filter berdasarkan tahun created_at = 2023.",
+          "sql": "SELECT COUNT(id) FROM customers WHERE YEAR(created_at) = 2023;"
+        }
+      }
+    },
+    "schema_db": {
+      "employee_data": [
+        "emp_id",
+        "first_name",
+        "last_name",
+        "start_date",
+        "exit_date",
+        "title",
+        "supervisor",
+        "ad_email",
+        "business_unit",
+        "employee_status",
+        "employee_type",
+        "pay_zone",
+        "employee_classification_type",
+        "termination_type",
+        "termination_description",
+        "department_type",
+        "division",
+        "dob",
+        "state",
+        "job_function_description",
+        "gender_code",
+        "location_code",
+        "race_desc",
+        "marital_desc",
+        "performance_score",
+        "current_employee_rating",
+        "created_at",
+        "updated_at",
+        "deleted_at"
+      ],
+      "employee_engagement": [
+        "id",
+        "employee_id",
+        "survey_date",
+        "engagement_score",
+        "satisfaction_score",
+        "work_life_balance_score",
+        "created_at",
+        "updated_at",
+        "deleted_at"
+      ],
+      "recruitment_data": [
+        "applicant_id",
+        "application_date",
+        "first_name",
+        "last_name",
+        "gender",
+        "date_of_birth",
+        "phone_number",
+        "email",
+        "address",
+        "city",
+        "state",
+        "zip_code",
+        "country",
+        "education_level",
+        "years_of_experience",
+        "desired_salary",
+        "job_title",
+        "status",
+        "created_at",
+        "updated_at",
+        "deleted_at"
+      ],
+      "training_and_development": [
+        "id",
+        "employee_id",
+        "training_date",
+        "training_program_name",
+        "training_type",
+        "training_outcome",
+        "location",
+        "trainer",
+        "training_duration_days",
+        "training_cost",
+        "created_at",
+        "updated_at",
+        "deleted_at"
+      ]
+    },
+    "schema_desc": {
+      "employee_data": {
+        "emp_id": "ID unik untuk setiap karyawan.",
+        "first_name": "Nama depan karyawan.",
+        "last_name": "Nama belakang karyawan.",
+        "start_date": "Tanggal mulai bekerja.",
+        "exit_date": "Tanggal karyawan berhenti bekerja (jika ada).",
+        "title": "Jabatan atau posisi karyawan.",
+        "supervisor": "Nama supervisor atau atasan langsung.",
+        "ad_email": "Email Active Directory karyawan.",
+        "business_unit": "Unit bisnis tempat karyawan bekerja.",
+        "employee_status": "Status keaktifan karyawan.",
+        "employee_type": "Jenis karyawan, misalnya Contract atau Full-Time.",
+        "pay_zone": "Kategori zona pembayaran gaji.",
+        "employee_classification_type": "Jenis klasifikasi karyawan seperti Temporary, Permanent, dll.",
+        "termination_type": "Jenis terminasi jika karyawan keluar.",
+        "termination_description": "Deskripsi penyebab terminasi.",
+        "department_type": "Departemen tempat karyawan bekerja.",
+        "division": "Divisi organisasi.",
+        "dob": "Tanggal lahir karyawan.",
+        "state": "Lokasi negara bagian.",
+        "job_function_description": "Deskripsi fungsi pekerjaan.",
+        "gender_code": "Jenis kelamin karyawan.",
+        "location_code": "Kode lokasi tempat karyawan bekerja.",
+        "race_desc": "Deskripsi ras karyawan.",
+        "marital_desc": "Status perkawinan karyawan.",
+        "performance_score": "Penilaian performa karyawan.",
+        "current_employee_rating": "Rating performa karyawan."
+      },
+      "employee_engagement": {
+        "employee_id": "ID karyawan yang mengikuti survei. Berelasi dengan employee_data.emp_id.",
+        "survey_date": "Tanggal survei dilaksanakan.",
+        "engagement_score": "Skor engagement karyawan pada survei. Rentang umum 1–5.",
+        "satisfaction_score": "Skor kepuasan kerja karyawan pada survei. Rentang umum 1–5.",
+        "work_life_balance_score": "Skor work-life balance karyawan. Rentang umum 1–5."
+      },
+      "recruitment_data": {
+        "applicant_id": "ID unik yang diberikan kepada setiap pelamar. Digunakan sebagai primary key untuk mengidentifikasi data pelamar secara spesifik tanpa duplikasi.",
+        "application_date": "Tanggal ketika pelamar mengajukan lamaran pekerjaan. Informasi ini penting untuk memantau timeline rekrutmen.",
+        "first_name": "Nama depan pelamar yang digunakan sebagai bagian dari identitas personal.",
+        "last_name": "Nama belakang pelamar yang melengkapi informasi identitas personal.",
+        "gender": "Jenis kelamin pelamar, biasanya berisi 'Male', 'Female', atau nilai lain sesuai data yang diberikan.",
+        "date_of_birth": "Tanggal lahir pelamar. Digunakan untuk kebutuhan analisis demografi atau verifikasi umur.",
+        "phone_number": "Nomor telepon pelamar yang dapat dihubungi untuk komunikasi terkait proses rekrutmen.",
+        "email": "Alamat email pelamar untuk keperluan komunikasi formal dalam proses rekrutmen.",
+        "address": "Alamat tempat tinggal lengkap pelamar.",
+        "city": "Nama kota tempat tinggal pelamar.",
+        "state": "Wilayah administratif seperti provinsi atau negara bagian.",
+        "zip_code": "Kode pos tempat tinggal pelamar.",
+        "country": "Negara tempat tinggal pelamar.",
+        "education_level": "Tingkat pendidikan terakhir yang telah diselesaikan oleh pelamar, misalnya 'High School', 'Bachelor', atau 'Master'.",
+        "years_of_experience": "Jumlah total tahun pengalaman kerja relevan yang dimiliki pelamar.",
+        "desired_salary": "Besaran gaji yang diharapkan pelamar untuk posisi yang dilamar, biasanya dalam satuan mata uang perusahaan.",
+        "job_title": "Nama posisi atau jabatan yang dilamar oleh kandidat, misalnya 'Data Analyst', 'Software Engineer', atau 'CTO'.",
+        "status": "Tahap atau status terbaru pelamar dalam proses rekrutmen, misalnya 'Applied', 'Screening', 'Interviewing', 'Hired', atau 'Rejected'."
+      },
+      "training_and_development": {
+        "employee_id": "ID unik karyawan yang mengikuti pelatihan.",
+        "training_date": "Tanggal pelatihan dilakukan.",
+        "training_program_name": "Nama program pelatihan.",
+        "training_type": "Jenis pelatihan, seperti internal atau eksternal.",
+        "training_outcome": "Hasil dari pelatihan, misalnya Passed atau Failed.",
+        "location": "Lokasi tempat pelatihan berlangsung.",
+        "trainer": "Nama pengajar atau trainer.",
+        "training_duration_days": "Durasi pelatihan dalam jumlah hari.",
+        "training_cost": "Biaya yang dikeluarkan untuk pelatihan."
+      }
+    },
+    "tables": [
+      "employee_data",
+      "recruitment_data",
+      "training_and_development"
+    ],
+    "related_tables": [],
+    "relevant": [
+      {
+        "table": "training_and_development",
+        "column": "training_duration_days",
+        "description": "Durasi pelatihan dalam jumlah hari.",
+        "score": 0.20337545845994887
+      },
+      {
+        "table": "recruitment_data",
+        "column": "years_of_experience",
+        "description": "Jumlah total tahun pengalaman kerja relevan yang dimiliki pelamar.",
+        "score": 0.19742809878398704
+      },
+      {
+        "table": "employee_data",
+        "column": "location_code",
+        "description": "Kode lokasi tempat karyawan bekerja.",
+        "score": 0.10975266560275669
+      },
+      {
+        "table": "recruitment_data",
+        "column": "zip_code",
+        "description": "Kode pos tempat tinggal pelamar.",
+        "score": 0.08614472264808999
+      },
+      {
+        "table": "recruitment_data",
+        "column": "phone_number",
+        "description": "Nomor telepon pelamar yang dapat dihubungi untuk komunikasi terkait proses rekrutmen.",
+        "score": 0.07413143180368482
+      },
+      {
+        "table": "employee_data",
+        "column": "start_date",
+        "description": "Tanggal mulai bekerja.",
+        "score": 0.057704383332637194
+      },
+      {
+        "table": "recruitment_data",
+        "column": "gender",
+        "description": "Jenis kelamin pelamar, biasanya berisi 'Male', 'Female', atau nilai lain sesuai data yang diberikan.",
+        "score": 0.05675906060089171
+      },
+      {
+        "table": "employee_data",
+        "column": "exit_date",
+        "description": "Tanggal karyawan berhenti bekerja (jika ada).",
+        "score": 0.053996068577911935
+      }
+    ],
+    "max_tokens": 200,
+    "understanding": {
+      "intent": "berapa jumlah pegawai kontrak",
+      "entities": [
+        "berapa",
+        "jumlah",
+        "kontrak",
+        "pegawai"
+      ],
+      "notes": "Parsed via heuristic."
+    },
+    "values": [],
+    "logical_form": {
+      "select": [],
+      "from": [
+        "employee_data",
+        "recruitment_data",
+        "training_and_development"
+      ],
+      "joins": [],
+      "where": [],
+      "group_by": [],
+      "order_by": []
+    },
+    "sql": "SELECT count(*) FROM employee_data AS T1 JOIN recruitment_data AS T2 ON T1.employee_data_id  =  T2.employee_data_id JOIN training_and_development AS T3 ON T2.training_and_development_id  =  T3.training_and_development_id WHERE T1.start_date  >=  date('2000-01-01') AND T1.end_date  <=  date('2000-01-01') AND T2.gender  =  'Male' AND T2.exit_date  =  NULL GROUP BY T1.employee_data_id HAVING count(*)  >=  3;"
+  }
+}

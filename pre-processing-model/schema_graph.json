@@ -1,0 +1,34 @@
+{
+  "graph": {
+    "employee_data.first_name": [
+      "recruitment_data.first_name"
+    ],
+    "recruitment_data.first_name": [
+      "employee_data.first_name"
+    ],
+    "employee_data.last_name": [
+      "recruitment_data.last_name"
+    ],
+    "recruitment_data.last_name": [
+      "employee_data.last_name"
+    ],
+    "employee_data.state": [
+      "recruitment_data.state"
+    ],
+    "recruitment_data.state": [
+      "employee_data.state"
+    ],
+    "employee_engagement.id": [
+      "training_and_development.id"
+    ],
+    "training_and_development.id": [
+      "employee_engagement.id"
+    ],
+    "employee_engagement.employee_id": [
+      "training_and_development.employee_id"
+    ],
+    "training_and_development.employee_id": [
+      "employee_engagement.employee_id"
+    ]
+  }
+}

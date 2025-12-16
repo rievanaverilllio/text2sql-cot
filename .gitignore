@@ -1,0 +1,13 @@
+# Ignore generated logs and large model files
+log_print/
+gguf-van/
+model-gguf/
+
+# Ignore gguf model files
+*.gguf
+
+# Python artifacts
+__pycache__/
+.pytest_cache/
+.venv/
+env/
