@@ -19,7 +19,7 @@
     {"name": "termination_type", "description": "Termination type (Voluntary/Involuntary/Unk).", "example": "Unk"},
     {"name": "termination_description", "description": "Termination reason (text).", "example": "Me see picture nature degree benefit."},
     {"name": "department_type", "description": "Department / function.", "example": "Production"},
-    {"name": "division", "description": "Division.", "example": "Finance & Accounting"},
+    {"name": "division", "description": "Division.", "example": "Technology"},
     {"name": "dob", "description": "Date of birth (DD-MM-YYYY).", "example": "07-10-1969"},
     {"name": "state", "description": "Work state/province.", "example": "MA"},
     {"name": "job_function_description", "description": "Job function (e.g., Accounting).", "example": "Accounting"},

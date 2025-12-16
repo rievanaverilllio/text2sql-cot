@@ -246,33 +246,6 @@ def build_column_metadata(candidates: List[str]) -> List[Dict[str, Any]]:
 
 
 # =========================
-# 6. Candidate prioritization helpers
-# =========================
-def _priority_tables_from_query(query: str) -> set[str]:
-    lowered = query.lower()
-    targets = set()
-    if "karyawan" in lowered:
-        targets.add("employee_data")
-    if "pelamar" in lowered:
-        targets.add("recruitment_data")
-    if "pelatihan" in lowered:
-        targets.add("training_and_development")
-    if "survey karyawan" in lowered:
-        targets.add("employee_engagement")
-    return targets
-
-
-def _prioritize_candidates(candidates: List[str], priority_tables: set[str]) -> List[str]:
-    if not priority_tables:
-        return candidates
-    preferred, others = [], []
-    for candidate in candidates:
-        table = candidate.split(".", 1)[0] if "." in candidate else ""
-        (preferred if table in priority_tables else others).append(candidate)
-    return preferred + others
-
-
-# =========================
 # 7. Vector store scoring
 # =========================
 def _cosine_similarity(vec_a: np.ndarray, vec_b: np.ndarray) -> float:
@@ -434,15 +407,8 @@ def _collect_candidate_tables(candidates: Iterable[str]) -> List[str]:
 
 
 def _format_mapping_block(use_static_rules: bool) -> str:
-    if not use_static_rules:
-        return ""
-    return (
-        "ATURAN PEMETAAN TABEL (opsional):\n"
-        "- \"karyawan\" → employee_data\n"
-        "- \"pelamar\" → recruitment_data\n"
-        "- \"pelatihan\" → training_and_development\n"
-        "- \"survey karyawan\" → employee_engagement"
-    )
+    # Mapping block berbasis rule sudah tidak digunakan (no-op).
+    return ""
 
 
 def _format_column_descriptions(metadata: Sequence[Dict[str, Any]], include_desc: bool) -> str:
@@ -525,6 +491,119 @@ def _build_selected_descriptions(columns: Sequence[str], include_desc: bool) -> 
         else:
             lines.append(column)
     return "\n".join(lines) if lines else "(tidak ada)"
+
+
+def _extract_query_values(query: str) -> List[str]:
+    """Heuristically extract candidate literal values from the user query.
+
+    Fokus pada:
+    - teks di dalam tanda kutip
+    - token setelah kata kunci seperti "divisi" / "department"
+    - token ALL-CAPS pendek (mis. IT, HR)
+    """
+
+    values: List[str] = []
+
+    # 1) Nilai di dalam tanda kutip
+    for match in re.finditer(r'"([^"]+)"|\'([^\']+)\'', query):
+        text = match.group(1) or match.group(2)
+        if text:
+            v = text.strip()
+            if v:
+                values.append(v)
+
+    # 2) Pola sederhana: "divisi X" atau "department X"
+    for pattern in [r"\bdivisi\b\s+([A-Za-z0-9&\-/]+)", r"\bdepartment\b\s+([A-Za-z0-9&\-/]+)"]:
+        for match in re.finditer(pattern, query, flags=re.IGNORECASE):
+            v = match.group(1).strip(" ,.")
+            if v:
+                values.append(v)
+
+    # 3) Token ALL-CAPS pendek (mis. IT, HR)
+    for token in re.findall(r"\b[A-Z]{2,5}\b", query):
+        if token not in {"SQL", "LLM"}:
+            values.append(token)
+
+    # Dedup dengan preservasi urutan
+    seen = set()
+    result: List[str] = []
+    for v in values:
+        key = v.lower()
+        if key not in seen:
+            seen.add(key)
+            result.append(v)
+    return result
+
+
+def _build_example_value_candidates(columns: Sequence[str]) -> List[Dict[str, Any]]:
+    """Ambil contoh nilai (example) dari schema description untuk kolom terpilih."""
+
+    schema = _load_schema_description()
+    candidates: List[Dict[str, Any]] = []
+    for col in columns:
+        if "." not in col:
+            continue
+        table, name = col.split(".", 1)
+        col_meta = schema.get(table, {}).get("columns", {}).get(name, {})
+        example = col_meta.get("example")
+        if isinstance(example, str):
+            text = example.strip()
+            if text:
+                candidates.append({"table": table, "column": name, "value": text})
+    return candidates
+
+
+def _retrieve_value_mappings(query: str, selected_columns: Sequence[str]) -> List[Dict[str, Any]]:
+    """Value Retrieval: hubungkan istilah user ke nilai contoh di schema (vector store).
+
+    Contoh: "IT"  "Technology" pada kolom employee_data.division.
+    """
+
+    from math import isfinite
+
+    query_values = _extract_query_values(query)
+    value_candidates = _build_example_value_candidates(selected_columns)
+    if not query_values or not value_candidates:
+        return []
+
+    mod = _load_splade_module()
+    value_texts = [c["value"] for c in value_candidates]
+    value_embs = mod.embed_text(value_texts, mod.tokenizer, mod.model)
+
+    mappings: List[Dict[str, Any]] = []
+    for q_val in query_values:
+        q_emb = mod.embed_text([q_val], mod.tokenizer, mod.model)[0]
+        best: Optional[Dict[str, Any]] = None
+        for cand, emb in zip(value_candidates, value_embs):
+            score = _cosine_similarity(q_emb, emb)
+            if not isfinite(score):
+                continue
+            if best is None or score > best["score"]:
+                best = {
+                    "query_value": q_val,
+                    "table": cand["table"],
+                    "column": cand["column"],
+                    "db_value": cand["value"],
+                    "score": float(score),
+                }
+        # Threshold sederhana agar tidak memaksakan mapping yang lemah
+        if best is not None and best["score"] >= 0.25:
+            mappings.append(best)
+
+    return mappings
+
+
+def _format_value_mappings(mappings: Sequence[Dict[str, Any]]) -> str:
+    """Format blok petunjuk value-mapping untuk dimasukkan ke prompt LLM."""
+
+    if not mappings:
+        return "(tidak ada)"
+    lines: List[str] = []
+    for m in mappings:
+        lines.append(
+            f"User term \"{m['query_value']}\" -> {m['table']}.{m['column']} = \"{m['db_value']}\" (sim={m['score']:.3f})"
+        )
+    return "\n".join(lines)
 
 
 def _append_sql_to_latest_log(sql_text: str) -> None:
@@ -668,12 +747,8 @@ def ask(
         llm_table_preselect=True,
         use_vector_store=use_vector_store,
     )
-
-    candidates = (
-        _prioritize_candidates(candidates_raw, _priority_tables_from_query(query))
-        if use_static_rules
-        else candidates_raw
-    )
+    # Tidak lagi menggunakan rule-based prioritization; murni dari SPLADE/vector store.
+    candidates = candidates_raw
     metadata = build_column_metadata(candidates) if include_desc else []
 
     desc_block = _format_column_descriptions(metadata, include_desc)
@@ -745,6 +820,10 @@ Important: Focus on columns that describe key attributes, identifiers, and statu
     selected_tables = _tables_from_columns(columns)
     selected_desc_block = _build_selected_descriptions(columns, include_desc)
 
+    # Value Retrieval: cari padanan nilai user (mis. "IT") ke nilai contoh di schema.
+    value_mappings = _retrieve_value_mappings(query, columns)
+    value_mapping_block = _format_value_mappings(value_mappings)
+
     sql_prompt = f"""
 You are a strict text-to-SQL generator for a schema-limited database.
 
@@ -762,6 +841,12 @@ HARD CONSTRAINTS (MUST FOLLOW):
 8. Prefer the simplest correct SQL that satisfies the USER QUERY.
 9. If multiple SQL versions could work, output the simplest one.
 10. If the USER QUERY clearly requires multiple tables, include only the minimal necessary JOINs.
+
+VALUE MAPPING HINTS (from vector store):
+{value_mapping_block}
+
+If a user term appears in VALUE MAPPING HINTS, prefer using the mapped db_value
+in the WHERE clause instead of the raw user text.
 
 COLUMN INFORMATION:
 {selected_desc_block}
@@ -785,6 +870,7 @@ Return ONLY the SQL statement.
         "raw": output_text.strip(),
         "columns": columns,
         "columns_csv": ", ".join(columns),
+        "value_mappings": value_mappings,
         "sql": sql_final,
     }
 

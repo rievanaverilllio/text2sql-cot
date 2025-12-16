@@ -1,0 +1,314 @@
+{
+  "tables": [
+    {
+      "table": "employee_data",
+      "text": "employee_data: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_engagement",
+      "text": "employee_engagement: Semantic: Represents the 'Employee Sentiment' entity, capturing longitudinal data on employee engagement, satisfaction, and work-life balance. Each record corresponds to a specific survey response linked to an employee."
+    },
+    {
+      "table": "recruitment_data",
+      "text": "recruitment_data: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "training_and_development",
+      "text": "training_and_development: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    }
+  ],
+  "columns": [
+    {
+      "table": "employee_data",
+      "column": "emp_id",
+      "text": "employee_data.emp_id. Unique employee ID (PK).. example=3427. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "first_name",
+      "text": "employee_data.first_name. First name.. example=Uriah. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "last_name",
+      "text": "employee_data.last_name. Last name.. example=Bridges. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "start_date",
+      "text": "employee_data.start_date. Start date (DD-Mon-YY).. example=20-Sep-19. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "exit_date",
+      "text": "employee_data.exit_date. End date; NULL = still employed.. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "title",
+      "text": "employee_data.title. Job title.. example=Production Technician I. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "supervisor",
+      "text": "employee_data.supervisor. Direct manager name.. example=Peter Oneill. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "ad_email",
+      "text": "employee_data.ad_email. Work email.. example=uriah.bridges@bilearner.com. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "business_unit",
+      "text": "employee_data.business_unit. Business unit code.. example=CCDR. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "employee_status",
+      "text": "employee_data.employee_status. Employment status (e.g., Active, Voluntarily Terminated).. example=Active. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "employee_type",
+      "text": "employee_data.employee_type. Employment type (Contract/Full-Time/etc.).. example=Contract. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "pay_zone",
+      "text": "employee_data.pay_zone. Pay zone / salary band.. example=Zone C. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "employee_classification_type",
+      "text": "employee_data.employee_classification_type. Classification (Temporary/Part-Time/etc.).. example=Temporary. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "termination_type",
+      "text": "employee_data.termination_type. Termination type (Voluntary/Involuntary/Unk).. example=Unk. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "termination_description",
+      "text": "employee_data.termination_description. Termination reason (text).. example=Me see picture nature degree benefit.. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "department_type",
+      "text": "employee_data.department_type. Department / function.. example=Production. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "division",
+      "text": "employee_data.division. Division.. example=Technology. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "dob",
+      "text": "employee_data.dob. Date of birth (DD-MM-YYYY).. example=07-10-1969. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "state",
+      "text": "employee_data.state. Work state/province.. example=MA. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "job_function_description",
+      "text": "employee_data.job_function_description. Job function (e.g., Accounting).. example=Accounting. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "gender_code",
+      "text": "employee_data.gender_code. Gender.. example=Female. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "location_code",
+      "text": "employee_data.location_code. Work location code.. example=34904. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "race_desc",
+      "text": "employee_data.race_desc. Race / ethnicity.. example=White. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "marital_desc",
+      "text": "employee_data.marital_desc. Marital status.. example=Widowed. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "performance_score",
+      "text": "employee_data.performance_score. Performance rating label.. example=Fully Meets. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_data",
+      "column": "current_employee_rating",
+      "text": "employee_data.current_employee_rating. Numeric performance score (1–5).. example=4. table: Semantic: The central repository for employee information, representing the 'Employee' entity. It aggregates demographic, professional, structural, and status-related attributes to define an employee's profile within the..."
+    },
+    {
+      "table": "employee_engagement",
+      "column": "employee_id",
+      "text": "employee_engagement.employee_id. FK to employee_data.emp_id.. example=1001. table: Semantic: Represents the 'Employee Sentiment' entity, capturing longitudinal data on employee engagement, satisfaction, and work-life balance. Each record corresponds to a specific survey response linked to an employee."
+    },
+    {
+      "table": "employee_engagement",
+      "column": "survey_date",
+      "text": "employee_engagement.survey_date. Survey date (YYYY-MM-DD).. example=2022-10-10. table: Semantic: Represents the 'Employee Sentiment' entity, capturing longitudinal data on employee engagement, satisfaction, and work-life balance. Each record corresponds to a specific survey response linked to an employee."
+    },
+    {
+      "table": "employee_engagement",
+      "column": "engagement_score",
+      "text": "employee_engagement.engagement_score. Engagement (1–5).. example=2. table: Semantic: Represents the 'Employee Sentiment' entity, capturing longitudinal data on employee engagement, satisfaction, and work-life balance. Each record corresponds to a specific survey response linked to an employee."
+    },
+    {
+      "table": "employee_engagement",
+      "column": "satisfaction_score",
+      "text": "employee_engagement.satisfaction_score. Satisfaction (1–5).. example=5. table: Semantic: Represents the 'Employee Sentiment' entity, capturing longitudinal data on employee engagement, satisfaction, and work-life balance. Each record corresponds to a specific survey response linked to an employee."
+    },
+    {
+      "table": "employee_engagement",
+      "column": "work_life_balance_score",
+      "text": "employee_engagement.work_life_balance_score. Work–life balance (1–5).. example=5. table: Semantic: Represents the 'Employee Sentiment' entity, capturing longitudinal data on employee engagement, satisfaction, and work-life balance. Each record corresponds to a specific survey response linked to an employee."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "applicant_id",
+      "text": "recruitment_data.applicant_id. Applicant ID (PK).. example=1001. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "application_date",
+      "text": "recruitment_data.application_date. Application date (YYYY-MM-DD).. example=2023-06-03. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "first_name",
+      "text": "recruitment_data.first_name. First name.. example=Scott. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "last_name",
+      "text": "recruitment_data.last_name. Last name.. example=Sheppard. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "gender",
+      "text": "recruitment_data.gender. Gender.. example=Male. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "date_of_birth",
+      "text": "recruitment_data.date_of_birth. Date of birth (YYYY-MM-DD).. example=1992-08-31. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "phone_number",
+      "text": "recruitment_data.phone_number. Phone number.. example=421-429-7655x39421. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "email",
+      "text": "recruitment_data.email. Email.. example=perezjanet@example.org. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "address",
+      "text": "recruitment_data.address. Street address.. example=597 Smith Point. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "city",
+      "text": "recruitment_data.city. City.. example=Hollandfort. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "state",
+      "text": "recruitment_data.state. State/province.. example=NV. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "zip_code",
+      "text": "recruitment_data.zip_code. Postal/ZIP code.. example=57588. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "country",
+      "text": "recruitment_data.country. Country.. example=Micronesia. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "education_level",
+      "text": "recruitment_data.education_level. Highest education.. example=High School. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "years_of_experience",
+      "text": "recruitment_data.years_of_experience. Years of experience.. example=8. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "desired_salary",
+      "text": "recruitment_data.desired_salary. Desired salary (decimal).. type=decimal. example=60103.21. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "job_title",
+      "text": "recruitment_data.job_title. Applied job title.. example=Chief Technology Officer. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "recruitment_data",
+      "column": "status",
+      "text": "recruitment_data.status. Pipeline status (Applied/Screening/Interviewing/...).. example=Interviewing. table: Semantic: Represents the 'Job Applicant' entity and their lifecycle within the recruitment pipeline. It tracks candidates from initial application through various selection stages to the final hiring outcome."
+    },
+    {
+      "table": "training_and_development",
+      "column": "employee_id",
+      "text": "training_and_development.employee_id. FK to employee_data.emp_id.. example=1001. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "training_date",
+      "text": "training_and_development.training_date. Training date (YYYY-MM-DD).. example=2022-09-21. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "training_program_name",
+      "text": "training_and_development.training_program_name. Program name.. example=Customer Service. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "training_type",
+      "text": "training_and_development.training_type. Type (Internal/External/Online/Onsite).. example=Internal. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "training_outcome",
+      "text": "training_and_development.training_outcome. Outcome (Passed/Failed/Completed).. example=Failed. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "location",
+      "text": "training_and_development.location. Training location.. example=Port Greg. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "trainer",
+      "text": "training_and_development.trainer. Trainer name.. example=Amanda Daniels. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "training_duration_days",
+      "text": "training_and_development.training_duration_days. Duration (days).. example=4. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    },
+    {
+      "table": "training_and_development",
+      "column": "training_cost",
+      "text": "training_and_development.training_cost. Cost.. example=510.83. table: Semantic: Represents 'Professional Development' events, detailing the training programs undertaken by employees. It quantifies skill acquisition efforts, costs, and outcomes associated with workforce development."
+    }
+  ],
+  "splade_model": "naver/splade-cocondenser-ensembledistil",
+  "tokenizer": "naver/splade-cocondenser-ensembledistil"
+}
